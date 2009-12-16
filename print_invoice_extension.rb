@@ -12,20 +12,6 @@ class PrintInvoiceExtension < Spree::Extension
 
   def activate
 
-		Admin::OrdersHelper.module_eval do
-		  def event_links
-		    links = [button_link_to("Print Invoice", formatted_admin_order_url(@order, :pdf))]
-		    @order_events.sort.each do |event|
-		      if @order.send("can_#{event}?")
-		        links << button_link_to(t(event), fire_admin_order_url(@order, :e => event),
-		                                { :method => :put, :confirm => t("order_sure_want_to", :event => t(event)) })
-		      end
-		    end
-		    links.join('&nbsp;')
-		  end
-		
-		end
-		
 		Admin::OrdersController.class_eval do
 			show.success.wants.pdf { render :layout => false} #, :template => 'admin/orders/show.pdf.prawn' 
 		end
