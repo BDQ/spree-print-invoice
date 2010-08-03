@@ -7,7 +7,7 @@ class PrintInvoiceExtension < Spree::Extension
   url "http://yourwebsite.com/print_invoice"
 
   def self.require_gems(config)
-    config.gem "prawn", :version => '0.6.1'
+    config.gem "prawn", :version => '0.8.4'
   end
 
   def activate

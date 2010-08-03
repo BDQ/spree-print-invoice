@@ -1,5 +1,4 @@
 require 'prawn/layout'
-require 'prawn/format'
 
 bill_address = @order.bill_address
 ship_address = @order.ship_address
@@ -9,7 +8,7 @@ font "Helvetica"
 image Spree::PrintInvoice::Config[:print_invoice_logo_path], :at => [0,720], :scale => 0.65
 
 fill_color "005D99"
-text "Customer Invoice", :at => [200,698], :style => :bold, :size => 22
+text "Customer Invoice", :align => :center, :style => :bold, :size => 22
 fill_color "000000"
 
 move_down 55
@@ -154,10 +153,12 @@ bounding_box [0,cursor], :width => 540, :height => 450 do
 
 end
 
-footer [margin_box.left, margin_box.bottom + 30] do
-  font "Helvetica", :size => 8
-
-  text "Shipping is not refundable. | Special orders are non-refundable."
-  text "In order to return a product prior authorization with a RMA number is mandatory"
-  text "All returned items must be in original un-opened packaging with seal intact."
+# Footer
+repeat :all do
+  footer_message = <<EOS
+Shipping is not refundable. | Special orders are non-refundable.
+In order to return a product prior authorization with a RMA number is mandatory
+All returned items must be in original un-opened packaging with seal intact.
+EOS
+  text_box footer_message, :at => [margin_box.left, margin_box.bottom + 30], :size => 8
 end

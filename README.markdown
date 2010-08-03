@@ -17,7 +17,7 @@ INSTALLATION
 
 3. Make sure you have the required gems
 
-      sudo gem install prawn prawn-layout
+      sudo gem install prawn --version="0.8.4"
       
 4. Optional: Set the logo path preference to include your store / company logo (in your seeds.rb / site extension).
 
