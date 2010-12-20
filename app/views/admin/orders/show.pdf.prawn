@@ -4,8 +4,10 @@ bill_address = @order.bill_address
 ship_address = @order.ship_address
 
 font "Helvetica"
+im = Spree::Config[:print_invoice_logo_path]
+im = "#{RAILS_ROOT}/public/images/admin/bg/spree_50.png" unless im
 
-image Spree::PrintInvoice::Config[:print_invoice_logo_path], :at => [0,720], :scale => 0.65
+image im , :at => [0,720], :scale => 0.65
 
 fill_color "005D99"
 text "Customer Invoice", :align => :center, :style => :bold, :size => 22
@@ -14,16 +16,16 @@ fill_color "000000"
 move_down 55
 
 font "Helvetica", :style => :bold, :size => 14
-text "Order Number: #{@order.number}"
+text "#{I18n.t(:order_number)} #{@order.number}"
 
 font "Helvetica", :size => 8
-text @order.created_at.to_s(:long)
+text I18n.l @order.created_at
 
 # Address Stuff
 bounding_box [0,600], :width => 540 do
   move_down 2
-  data = [[Prawn::Table::Cell.new( :text => "Billing Address", :font_style => :bold ),
-                Prawn::Table::Cell.new( :text =>"Shipping Address", :font_style => :bold )]]
+  data = [[Prawn::Table::Cell.new( :text => I18n.t(:billing_address), :font_style => :bold ),
+                Prawn::Table::Cell.new( :text =>I18n.t(:shipping_address), :font_style => :bold )]]
 
   table data,
     :position           => :center,
@@ -73,11 +75,11 @@ move_down 30
 # Line Items
 bounding_box [0,cursor], :width => 540, :height => 450 do
   move_down 2
-  data =  [[Prawn::Table::Cell.new( :text => "SKU", :font_style => :bold),
-                Prawn::Table::Cell.new( :text =>"Item Description", :font_style => :bold ),
-               Prawn::Table::Cell.new( :text =>"Price", :font_style => :bold ),
-               Prawn::Table::Cell.new( :text =>"Qty", :font_style => :bold, :align => 1 ),
-               Prawn::Table::Cell.new( :text =>"Total", :font_style => :bold )]]
+  data =  [[Prawn::Table::Cell.new( :text => I18n.t(:sku), :font_style => :bold),
+                Prawn::Table::Cell.new( :text =>I18n.t(:item_description), :font_style => :bold ),
+               Prawn::Table::Cell.new( :text =>I18n.t(:price), :font_style => :bold ),
+               Prawn::Table::Cell.new( :text =>I18n.t(:qty), :font_style => :bold, :align => 1 ),
+               Prawn::Table::Cell.new( :text =>I18n.t(:total), :font_style => :bold )]]
 
   table data,
     :position           => :center,
@@ -118,16 +120,13 @@ bounding_box [0,cursor], :width => 540, :height => 450 do
 
   totals = []
 
-  totals << [Prawn::Table::Cell.new( :text => "Subtotal:", :font_style => :bold), number_to_currency(@order.item_total)]
+  totals << [Prawn::Table::Cell.new( :text => I18n.t(:subtotal), :font_style => :bold), number_to_currency(@order.item_total)]
 
-  @order.charges.each do |charge|
-    totals << [Prawn::Table::Cell.new( :text => charge.description + ":", :font_style => :bold), number_to_currency(charge.amount)]
-  end
-  @order.credits.each do |credit|
-    totals << [Prawn::Table::Cell.new( :text => credit.description + ":", :font_style => :bold), number_to_currency(credit.amount)]
+  @order.adjustments.each do |charge|
+    totals << [Prawn::Table::Cell.new( :text => charge.label + ":", :font_style => :bold), number_to_currency(charge.amount)]
   end
 
-  totals << [Prawn::Table::Cell.new( :text => "Order Total:", :font_style => :bold), number_to_currency(@order.total)]
+  totals << [Prawn::Table::Cell.new( :text => I18n.t(:order_total), :font_style => :bold), number_to_currency(@order.total)]
 
   bounding_box [bounds.right - 500, bounds.bottom + (totals.length * 15)], :width => 500 do
     table totals,
@@ -155,10 +154,6 @@ end
 
 # Footer
 repeat :all do
-  footer_message = <<EOS
-Shipping is not refundable. | Special orders are non-refundable.
-In order to return a product prior authorization with a RMA number is mandatory
-All returned items must be in original un-opened packaging with seal intact.
-EOS
+  footer_message = I18n.t :footer_message
   text_box footer_message, :at => [margin_box.left, margin_box.bottom + 30], :size => 8
 end
