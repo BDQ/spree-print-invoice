@@ -9,7 +9,7 @@ im = "#{RAILS_ROOT}/public/images/admin/bg/spree_50.png" unless im
 
 image im , :at => [0,720], :scale => 0.65
 
-fill_color "005D99"
+fill_color "E99323"
 text I18n.t(:customer_invoice), :align => :center, :style => :bold, :size => 22
 fill_color "000000"
 
