@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency('prawn_handler', '0.0.1')
+  s.add_dependency('prawn', '0.8.4')
 
 end
