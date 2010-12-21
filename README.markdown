@@ -7,21 +7,19 @@ This extension provides a "Print Invoice" button on the Admin Orders view screen
 INSTALLATION
 ------------
 
-1. Install the prawn_hander plugin
+1. The gem relies only on the prawn gem, to install you need to add the following lines to your Gemfile
 
-      script/plugin install git://github.com/Roman2K/prawn-handler.git
-      
-2. Install this extension
+  gem 'spree_print_invoice' , :git => 'git://github.com/BDQ/spree-print-invoice.git'
 
-      script/extension install git://github.com/BDQ/spree-print-invoice.git
+2. run bundler
 
-3. Make sure you have the required gems
+  bundle install
+  
+3. Set the logo path preference to include your store / company logo (in your seeds.rb / site extension).
 
-      sudo gem install prawn --version="0.8.4"
-      
-4. Optional: Set the logo path preference to include your store / company logo (in your seeds.rb / site extension).
+    Spree::Config.set(:print_invoice_logo_path => "/path/to/public/images/company-logo.png")
 
-      Spree::PrintInvoice::Config.set(:print_invoice_logo_path => "/path/to/public/images/company-logo.png")
+4. Optional: add your own translation to config/locales, even for english users. You can change the footer text that way.
 
 5. Enjoy!
 

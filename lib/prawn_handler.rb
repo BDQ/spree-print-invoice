@@ -1,3 +1,4 @@
+require 'prawn'
 module ActionView
   module TemplateHandlers
     class Prawn < TemplateHandler
