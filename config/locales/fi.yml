@@ -5,4 +5,5 @@ fi:
                   In order to return a product prior authorization with a RMA number is mandatory
                   All returned items must be in original un-opened packaging with seal intact.
   customer_invoice: Lasku
+  print_invoice: Tulosta Lasku
   
