@@ -13,7 +13,7 @@ bounding_box [0,cursor], :width => 540, :height => 450 do
     :vertical_padding   => 2,
     :horizontal_padding => 6,
     :font_size => 9,
-    :column_widths => { 0 => 75, 1 => 290, 2 => 75, 3 => 50, 4 => 50 } ,
+    :column_widths => { 0 => 75, 1 => 265, 2 => 75, 3 => 50, 4 => 75 } ,
     :align => { 0 => :left, 1 => :left, 2 => :right, 3 => :right, 4 => :right }
 
   move_down 4
@@ -38,7 +38,7 @@ bounding_box [0,cursor], :width => 540, :height => 450 do
       :vertical_padding   => 5,
       :horizontal_padding => 6,
       :font_size => 9,
-      :column_widths => { 0 => 75, 1 => 290, 2 => 75, 3 => 50, 4 => 50 },
+      :column_widths => { 0 => 75, 1 => 265, 2 => 75, 3 => 50, 4 => 75 } ,
       :align => { 0 => :left, 1 => :left, 2 => :right, 3 => :right, 4 => :right }
   end
 

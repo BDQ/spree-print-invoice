@@ -4,6 +4,11 @@ fi:
   footer_message: Shipping is not refundable. | Special orders are non-refundable.
                   In order to return a product prior authorization with a RMA number is mandatory
                   All returned items must be in original un-opened packaging with seal intact.
+  footer_left: "Maksuehto\nPankkiyhteys \nViivästyskorko "
+  footer_left2: " 14 päivää netto \n Nordea 123935 – 33811 \n 15 % Y tunnus ??"
+
+  footer_right: "Sähköposti  \nPuhelin  \n Nettikauppa  "
+  footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi "
   customer_invoice: Lasku
   print_invoice: Tulosta Lasku
   
