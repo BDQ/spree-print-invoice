@@ -1,8 +1,10 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 
 en:
-  footer_message: Shipping is not refundable. | Special orders are non-refundable.
-                  In order to return a product prior authorization with a RMA number is mandatory
-                  All returned items must be in original un-opened packaging with seal intact.
   customer_invoice: Customer Invoice
   print_invoice: Print Invoice
+  footer_left: "Return in\Other info"
+  footer_left2: " 14 days \n or never"
+
+  footer_right: "Company  \Phone  \n www "
+  footer_right2: " My great company \n040 146 1222 \n  www.gohereoften.com"

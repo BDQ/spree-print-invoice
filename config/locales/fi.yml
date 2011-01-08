@@ -1,14 +1,11 @@
 # Sample localization file for Finish. Add more files in this directory for other locales.
 
 fi:
-  footer_message: Shipping is not refundable. | Special orders are non-refundable.
-                  In order to return a product prior authorization with a RMA number is mandatory
-                  All returned items must be in original un-opened packaging with seal intact.
-  footer_left: "Maksuehto\nPankkiyhteys \nViivästyskorko "
-  footer_left2: " 14 päivää netto \n Nordea 123935 – 33811 \n 15 % Y tunnus ??"
+  footer_left: "Maksuehto\nViivästyskorko \IBAN\nBIC "
+  footer_left2: " 14 päivää netto \n 15 % \n FI1017 4530 0013 2474\n NDEAFIHH (Nordea)"
 
-  footer_right: "Sähköposti  \nPuhelin  \n Nettikauppa  "
-  footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi "
+  footer_right: "Sähköposti  \nPuhelin  \n Nettikauppa \nY-Tunnus"
+  footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi \n 2380478-1"
   customer_invoice: Lasku
   print_invoice: Tulosta Lasku
   
