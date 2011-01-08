@@ -45,6 +45,10 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
   font "Helvetica", :size => 9
 
   render :partial => "totals"
+
+  bounding_box [20,cursor + 40 ], :width => 400 do
+    render :partial => "bye"
+  end
   
   move_down 2
 

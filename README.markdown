@@ -26,14 +26,14 @@ Configuration
 
 2. Add your own own footer texts to the locale. The current footer works with :footer_left1 , :footer_left2 and :footer_right1, :footer_right2 where the 1 version is on the left in bold, and the 2 version the "value" on the right.
 
-3. Override any of the partial templates. they are address, footer, totals, header , and the line_items.
+3. Override any of the partial templates. they are address, footer, totals, header, bye , and the line_items. In bye the text :thanks is printed, and there is a hook :extra_note.
+
+4. Set :suppress_anonymous_address option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
 Plans
 =====
-Next will come
+Next i'll adapt the thing to print a packaging list, then receipts and then product related stuff with barcodes.
 
-- packaging list
-- extra texts 
 
 Contributions welcome
 
