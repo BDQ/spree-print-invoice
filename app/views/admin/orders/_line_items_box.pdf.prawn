@@ -1,5 +1,5 @@
 # Line Items
-bounding_box [0,cursor], :width => 540, :height => 450 do
+bounding_box [0,cursor], :width => 540, :height => 430 do
   move_down 2
   data =  [[Prawn::Table::Cell.new( :text => I18n.t(:sku), :font_style => :bold),
                 Prawn::Table::Cell.new( :text =>I18n.t(:item_description), :font_style => :bold ),
