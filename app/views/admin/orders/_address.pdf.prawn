@@ -2,6 +2,8 @@
 
 bill_address = @order.bill_address
 ship_address = @order.ship_address
+anonymous = @order.email =~ /@example.net$/
+
 
 bounding_box [0,600], :width => 540 do
   move_down 2
@@ -22,15 +24,19 @@ bounding_box [0,600], :width => 540 do
 
   bounding_box [0,0], :width => 540 do
     move_down 2
-    data2 = [["#{bill_address.firstname} #{bill_address.lastname}", "#{ship_address.firstname} #{ship_address.lastname}"],
+    if anonymous and Spree::Config[:suppress_anonymous_address]
+      data2 = [[" "," "]] * 6 
+    else
+      data2 = [["#{bill_address.firstname} #{bill_address.lastname}", "#{ship_address.firstname} #{ship_address.lastname}"],
             [bill_address.address1, ship_address.address1]]
-    data2 << [bill_address.address2, ship_address.address2] unless 
-                      bill_address.address2.blank? and ship_address.address2.blank?
-    data2 << ["#{@order.bill_address.city}, #{(@order.bill_address.state ? @order.bill_address.state.abbr : "")} #{@order.bill_address.zipcode}",
-              "#{@order.ship_address.city}, #{(@order.ship_address.state ? @order.ship_address.state.abbr : "")} #{@order.ship_address.zipcode}"]
-    data2 << [bill_address.country.name, ship_address.country.name]
-    data2 << [bill_address.phone, ship_address.phone]
-
+      data2 << [bill_address.address2, ship_address.address2] unless 
+                bill_address.address2.blank? and ship_address.address2.blank?
+      data2 << ["#{@order.bill_address.city}, #{(@order.bill_address.state ? @order.bill_address.state.abbr : "")} #{@order.bill_address.zipcode}",
+                  "#{@order.ship_address.city}, #{(@order.ship_address.state ? @order.ship_address.state.abbr : "")} #{@order.ship_address.zipcode}"]
+      data2 << [bill_address.country.name, ship_address.country.name]
+      data2 << [bill_address.phone, ship_address.phone]
+    end
+    
     table data2,
       :position           => :center,
       :border_width => 0.0,
