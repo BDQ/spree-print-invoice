@@ -1,8 +1,7 @@
 require 'prawn/layout'
 
 font "Helvetica"
-im = Spree::Config[:print_invoice_logo_path]
-im = "#{RAILS_ROOT}/public/images/admin/bg/spree_50.png" unless im
+im = "#{RAILS_ROOT}/#{Spree::Config[:print_invoice_logo_path]}"
 
 image im , :at => [0,720], :scale => 0.35
 
