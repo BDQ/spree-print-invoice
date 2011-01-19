@@ -2,11 +2,13 @@
 
 en:
   customer_invoice: Customer Invoice
-  print_invoice: Print Invoice
   footer_left: "Return in\Other info"
   footer_left2: " 14 days \n or never"
 
   footer_right: "Company  \Phone  \n www "
   footer_right2: " My great company \n040 146 1222 \n  www.gohereoften.com"
   thanks: Thank you for your order
+  invoice_print: Print Invoice
+  packaging_slip_print: Print Slip
+  packaging_slip: Packaging Slip
   

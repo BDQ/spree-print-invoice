@@ -1,4 +1,5 @@
 require 'prawn'
+
 module ActionView
   module TemplateHandlers
     class Prawn < TemplateHandler
@@ -25,5 +26,4 @@ module ActionView
   end
 end
 
-Mime::Type.register 'application/pdf', :pdf
 ActionView::TemplateHandlers::Prawn.register!

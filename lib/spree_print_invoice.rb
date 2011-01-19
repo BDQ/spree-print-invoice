@@ -1,4 +1,3 @@
-
 require 'print_invoice_hooks'
 require 'prawn_handler'
 
@@ -9,7 +8,10 @@ module PrintInvoice
     def self.activate
 
       Admin::OrdersController.class_eval do
-        show.success.wants.pdf { render :layout => false, :template => 'admin/orders/show.pdf.prawn' } #
+        show.success.wants.pdf do
+          template = params[:template] || "invoice"
+          render :layout => false , :template => "admin/orders/#{template}.pdf.prawn"
+        end #
       end
 
 
@@ -21,3 +23,5 @@ module PrintInvoice
 
   end
 end
+
+Mime::Type.register 'application/pdf', :pdf

@@ -30,9 +30,15 @@ Configuration
 
 4. Set :suppress_anonymous_address option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
+5. Enable packaging slips, by setting 
+
+  Spree::Config.set(:print_buttons => "invoice,packaging_slip"  #comma separated list
+
+ Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
+
 Plans
 =====
-Next i'll adapt the thing to print a packaging list, then receipts and then product related stuff with barcodes.
+Next receipts and then product related stuff with barcodes.
 
 
 Contributions welcome

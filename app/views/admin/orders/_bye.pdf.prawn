@@ -1,4 +1,5 @@
 font "Helvetica", :size => 12
+move_down 10 
 
 text I18n.t(:thanks)
 
