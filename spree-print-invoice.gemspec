@@ -1,4 +1,4 @@
-version = '0.0.1'
+version = '0.1.1'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency('prawn', '0.8.4')
+  s.add_dependency('prawn', '>=0.11.1')
   s.add_dependency('spree_core', '>= 0.30.0')
 
 end

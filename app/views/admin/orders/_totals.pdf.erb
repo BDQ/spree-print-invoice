@@ -1,0 +1,18 @@
+<%
+totals = []
+
+totals << [@pdf.make_cell( :content => I18n.t(:subtotal), :font_style => :bold), number_to_currency(@order.item_total)]
+
+@order.adjustments.each do |charge|
+  totals << [@pdf.make_cell( :content => charge.label + ":", :font_style => :bold), number_to_currency(charge.amount)]
+end
+
+totals << [@pdf.make_cell( :content => I18n.t(:order_total), :font_style => :bold), number_to_currency(@order.total)]
+
+@pdf.bounding_box [@pdf.bounds.right - 500, @pdf.bounds.bottom + (totals.length * 18)], :width => 500 do
+  @pdf.table totals,
+    :cell_style => {:align => :right,:border_width => 0.0 , :padding => [2,  5]} ,
+    :column_widths => { 0 => 425, 1 => 75 } 
+
+end 
+%>

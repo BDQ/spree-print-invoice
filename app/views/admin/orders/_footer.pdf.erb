@@ -1,0 +1,12 @@
+<%
+# To get a simple text, use the line below with your own footer_message
+#  text_box footer_message, :at => [margin_box.left -10, margin_box.bottom + 40], :size => 8 , :position => :left
+
+@pdf.repeat :all do
+  @pdf.table [[ I18n.t(:footer_left), I18n.t(:footer_left2),
+             I18n.t(:footer_right),  I18n.t(:footer_right2)]],
+            :cell_style => {:align => :left , :size => 9 , :font_style => :bold , :border_width => 0} ,
+            :column_widths => { 0 => 75, 1 => 190, 2 => 75, 3 => 190 } ,
+            :width => 530 
+end
+%>

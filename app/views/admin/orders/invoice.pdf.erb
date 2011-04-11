@@ -1,0 +1,6 @@
+<%
+@pdf = Prawn::Document.new(   :page_size   => "A4" ) 
+render :partial => "print"
+%>
+<%=raw @pdf.render%>
+ 

@@ -1,0 +1,58 @@
+<%
+if @hide_prices
+  @column_widths = { 0 => 100, 1 => 165, 2 => 75 } 
+else
+  @column_widths = { 0 => 75, 1 => 265, 2 => 75, 3 => 50, 4 => 75 } 
+end
+
+# Line Items
+@pdf.bounding_box [0,@pdf.cursor], :width => 540, :height => 470 do
+  @pdf.move_down 2
+  header =  [ I18n.t(:sku),  I18n.t(:item_description) ]
+  header << I18n.t(:price)  unless @hide_prices
+  header << I18n.t(:qty)
+  header << I18n.t(:total) unless @hide_prices
+
+  @pdf.table [header],
+    :cell_style => {:align => :left,:border_width => 0.0 , :font_style => :bold , :padding => [2  , 5]} ,
+    :column_widths => @column_widths do
+      columns(2..-1).align = :right
+    end
+
+  @pdf.move_down 4
+  @pdf.horizontal_rule
+  @pdf.move_down 2
+
+  @pdf.bounding_box [0,@pdf.cursor], :width => 540 do
+    @pdf.move_down 2
+    content = []
+    @order.line_items.each do |item|
+      row = [ item.variant.product.sku, item.variant.product.name ]
+      row << number_to_currency(item.price) unless @hide_prices
+      row << item.quantity
+      row << number_to_currency(item.price * item.quantity) unless @hide_prices
+      content << row
+    end
+
+
+    @pdf.table content,
+      :cell_style => {:align => :left,:border_width => 0.0,:size => 9 , :padding => [2  , 5]} ,
+      :column_widths => @column_widths do
+        columns(2..-1).align = :right
+      end
+    end
+
+  @pdf.font "Helvetica", :size => 9
+
+  @pdf.bounding_box [20,@pdf.cursor  ], :width => 400 do
+    render :partial => "bye"
+  end
+
+  render :partial => "totals" unless @hide_prices
+  
+  @pdf.move_down 2
+
+  @pdf.transparent(0.5) { @pdf.stroke_bounds } 
+
+end
+%>

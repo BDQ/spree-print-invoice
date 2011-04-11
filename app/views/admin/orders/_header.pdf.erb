@@ -1,0 +1,28 @@
+<%
+im = "#{RAILS_ROOT}/#{Spree::Config[:print_invoice_logo_path]}"
+
+y_position = @pdf.cursor
+@pdf.bounding_box([0, y_position-10], :width => 350 , :height => 70) do 
+  @pdf.image im , :scale => 0.35
+end 
+
+@pdf.bounding_box([350, y_position-10] , :width => 190 , :height => 70) do 
+  @pdf.fill_color "E99323"
+  if @hide_prices
+    @pdf.text I18n.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
+  else
+    @pdf.text I18n.t(:customer_invoice), :align => :right, :style => :bold, :size => 18
+  end
+  @pdf.fill_color "000000"
+  @pdf.move_down 2
+
+  @pdf.font "Helvetica",  :size => 9,  :style => :bold
+  @pdf.text "#{I18n.t(:order_number)} #{@order.number}", :align => :right
+
+  @pdf.move_down 2
+  @pdf.font "Helvetica", :size => 9
+  @pdf.text "#{I18n.l @order.completed_at.to_date}", :align => :right
+  
+end 
+
+%>

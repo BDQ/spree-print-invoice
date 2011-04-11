@@ -24,9 +24,9 @@ Configuration
 
     Spree::Config.set(:print_invoice_logo_path => "/path/to/public/images/company-logo.png")
 
-2. Add your own own footer texts to the locale. The current footer works with :footer_left1 , :footer_left2 and :footer_right1, :footer_right2 where the 1 version is on the left in bold, and the 2 version the "value" on the right.
+2. Add your own own footer texts to the locale. The current footer works with :footer_left , :footer_left2 and :footer_right, :footer_right2 where the 1 version is on the left in bold, and the 2 version the "value" on the right.
 
-3. Override any of the partial templates. they are address, footer, totals, header, bye , and the line_items. In bye the text :thanks is printed, and there is a hook :extra_note.
+3. Override any of the includes templates. they are address, footer, totals, header, bye , and the line_items. In bye the text :thanks is printed, and there is a hook :extra_note.
 
 4. Set :suppress_anonymous_address option to get blank addresses for anonymous email addresses (as created by my spree_last_address extension for empty/unknown user info)
 
@@ -35,6 +35,14 @@ Configuration
   Spree::Config.set(:print_buttons => "invoice,packaging_slip"  #comma separated list
 
  Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
+
+Note
+-----
+Unfortunately Romans nice missing_method approach, and the prawn own way, of having the pdf document implicit didn't work. So it's @pdf all over the place.
+
+Now using erb templates, if you change, you must get the output right!
+
+The good news is, it now works on PCs.
 
 Plans
 =====

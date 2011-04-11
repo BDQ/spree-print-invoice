@@ -1,37 +1,141 @@
-# Prawn-handler
+= Prawn: Fast, Nimble PDF Generation For Ruby
 
-A Rails template handler for PDF library [Prawn](http://prawn.majesticseacreature.com/). You can find a more detailed description in its [introduction article](http://roman.flucti.com/alternative-prawn-handler-for-rails).
+Prawn is a PDF writing library for Ruby designed to be tiny, fast, and nimble,
+just like the majestic sea creature.
 
-There already exists [prawnto](http://cracklabs.com/prawnto) but it's too bloated for my taste. Prawn-handler is lightweight, simple, and less of a hassle to use.
+Development on this library was initially made possible thanks to 
+the many people who donated to the Ruby Mendicant project: 
+http://rubymendicant.wikidot.com 
 
-## Usage
+The project is currently maintained by Gregory Brown, with lots of help from
+Prawn's core developers and the community.
 
-3.  Name PDF view files like `foo.pdf.prawn`. Inside, use the `pdf` method to access a `Prawn::Document` object. In addition, this handler allows for lazy method calls: you don't have to specify the receiver explicitely, which cleans up the resulting view code.
+== Quick Start
 
-    For example, the following code with formal calls:
+Getting started with Prawn can be as simple as:
 
-        pdf.bounding_box [100, 600], :width => 200 do
-          pdf.text "The rain in spain falls mainly on the plains " * 5
-          pdf.stroke do
-            pdf.line pdf.bounds.top_left,    pdf.bounds.top_right
-            pdf.line pdf.bounds.bottom_left, pdf.bounds.bottom_right
-          end
-        end
+ require 'prawn'
+ pdf = Prawn::Document.new
+ pdf.text("Prawn Rocks")
+ pdf.render_file('prawn.pdf')
 
-    Is equivalent to this one with lazy calls:
+But prawn can do a lot more:
 
-        bounding_box [100, 600], :width => 200 do
-          text "The rain in spain falls mainly on the plains " * 5
-          stroke do
-            line bounds.top_left,    bounds.top_right
-            line bounds.bottom_left, bounds.bottom_right
-          end
-        end
+===Any page size you can think of
 
-    This is accomplished without `instance_eval`, so that access to instance variables set by the controller is retained.
+ Prawn::Document.new('A0')
 
-## Credits
+...gives you an _really_ big page.
 
-Initially written by [Roman Le Négrate](http://roman.flucti.com) ([contact](mailto:roman.lenegrate@gmail.com)). 
-Released under the MIT-license: see the `LICENSE` file.
-Adopted to Rails 3 by  [Torsten Rüger](http://github.com/dancinglightning)
+ Prawn::Document.new(:page_size   => [11.32, 8.49],
+                     :page_layout => :portrait)
+
+...giving you a postage stamp.
+
+{Learn more}[link:classes/Prawn/Document.html]
+
+===Multiple Font Handling with UTF-8 Support
+
+ pdf.text("Prawn Rocks")
+ pdf.font("/myfont.ttf")
+ pdf.text("Prawn still rocks in a different font")
+
+...allowing you to use any font you want.
+
+{Learn more}[link:classes/Prawn/Font.html]
+
+===Drawing graphics directly into the page
+
+Simple shapes:
+
+ pdf.stroke do
+   pdf.circle_at [100,100], :radius => 25
+   pdf.rectangle [300,300], 100, 200
+ end
+
+(note, you need to stroke the path to put "ink" there)
+
+{Learn more}[link:classes/Prawn/Graphics.html]
+
+===Embedding JPEG and PNG Images Natively
+
+Reading an image directly from a file:
+
+ prawn_logo = "#{Prawn::BASEDIR}/data/images/prawn_logo.png"
+ pdf.image prawn_logo, :at => [50,450], :width => 450
+
+Or reading it from an IO stream:
+
+ require "open-uri"
+ pdf.image open("http://prawn.majesticseacreature.com/media/prawn_logo.png")
+
+{Learn more}[link:classes/Prawn/Images.html]
+
+===Measurement Conversion Tools for Your Sanity
+
+Prawn deals exclusively in PDF points... which work out to about 2.83464567mm... 
+don't try and do it in your head, instead, let Prawn help you:
+
+ require "prawn/measurement_extensions"
+
+ Prawn::Document.generate(:page_layout => :portrait, 
+                     :left_margin => 10.mm,    # different
+                     :right_margin => 1.cm,    # units
+                     :top_margin => 0.1.dm,    # work
+                     :bottom_margin => 0.01.m, # well 
+                     :page_size => 'A4') do
+   text "Prawn Rocks"
+ end
+
+{Learn more}[link:classes/Prawn/Measurements.html]
+
+===Document Security, Permissions, and Encryption
+
+See examples/security/ for example code, such as this:
+
+  require 'prawn/security'
+
+  Prawn::Document.generate("hello_foo.pdf") do
+    text "Hello, world!"
+    encrypt_document :user_password => 'foo', :owner_password => 'bar',
+      :permissions => { :print_document => false }
+  end
+
+This creates a document that requires the password 'foo' to be opened,
+and cannot be printed without entering the owner password 'bar'.
+
+If you want to prohibit most anyone from performing a certain activity, you can
+pass :owner_password => :random to generate a probably-unguessable owner 
+password.
+
+== Resources
+
+=== Examples:
+
+http://github.com/sandal/prawn/tree/stable/examples
+
+=== Bug Tracker:
+
+http://github.com/sandal/prawn/issues
+
+=== Source Code:
+
+http://github.com/sandal/prawn
+
+=== Mailing List:
+
+http://groups.google.com/group/prawn-ruby
+
+=== IRC:
+
+Find us in #prawn on irc.freenode.net
+  Gregory Brown: <sandal>
+  James Healy: <yob>               
+  Brad Ediger: <bradediger>
+  Daniel Nelson: <bluejade>
+  Jonathan Greenberg: <jonsgreen>
+  
+== Notes to Developers: 
+
+See HACKING file for details on getting set up with a local build.
+

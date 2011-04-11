@@ -1,0 +1,12 @@
+<%
+@pdf.font "Helvetica", :size => 12
+@pdf.move_down 40 
+
+@pdf.text I18n.t(:thanks)
+
+@pdf.move_down 20 
+
+hook :extra_note do 
+end
+%>
+

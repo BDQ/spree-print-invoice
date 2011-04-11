@@ -1,0 +1,16 @@
+<%
+@pdf.font "Helvetica"
+
+render :partial => "header"
+
+render :partial => "address"
+
+@pdf.move_down 25
+
+render :partial =>  "line_items_box"
+
+@pdf.move_down 8
+
+# Footer
+render :partial => "footer"
+%>
