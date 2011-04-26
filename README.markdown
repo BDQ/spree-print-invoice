@@ -3,6 +3,16 @@ SUMMARY
 
 This extension provides a "Print Invoice" button on the Admin Orders view screen which generates a PDF of the order details.
 
+Upon reflection
+===============
+
+Having done this I spent too much time to get it working. Part of that was tools on the move and my own 
+learning, but there is also a flaw in the approach of the actual pdf generation. 
+The generation is driven by code, which is a mistake. Pdf's are designed documents and should be created by a designer, not a coder. So the tool is wrong. Also this template code is really difficult to debug.
+
+So I would suggest to create a simple html page without the admin layout in admin/order. Create a link to it and let your designer work with tools he knows. You can then create pdf on the client, and if you can't try PdfKit, which does the html->pdf conversion on the server.
+
+I may get around to this, or if you do it, let me know. Whichever way, you have been warned.
  
 INSTALLATION
 ============
@@ -17,6 +27,7 @@ INSTALLATION
   
 3. Enjoy!
 
+ 
 Configuration
 ==============
 
