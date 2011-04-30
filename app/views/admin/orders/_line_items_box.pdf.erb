@@ -6,7 +6,7 @@ else
 end
 
 # Line Items
-@pdf.bounding_box [0,@pdf.cursor], :width => 540, :height => 470 do
+@pdf.bounding_box [0,@pdf.cursor], :width => 540, :height => 460 do
   @pdf.move_down 2
   header =  [ I18n.t(:sku),  I18n.t(:item_description) ]
   header << I18n.t(:price)  unless @hide_prices

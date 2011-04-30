@@ -6,7 +6,7 @@ ship_address = @order.ship_address
 anonymous = @order.email =~ /@example.net$/
 
 
-@pdf.bounding_box [0,670], :width => 540 , :height => 110 do
+@pdf.bounding_box [0,670], :width => 540 , :height => 118 do
 #  @pdf.move_down 2
   data = [[ I18n.t(:billing_address) , I18n.t(:shipping_address) ]]
 
