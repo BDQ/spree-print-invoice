@@ -45,7 +45,7 @@ Configuration
 
   Spree::Config.set(:print_buttons => "invoice,packaging_slip"  #comma separated list
 
- Use above feature for your own template if you want. For each button_name, define button_name_print text in your locale.
+ Use above feature for your own template if you want. For each button_name, define a subsection with header, print, and thanks, in your locale.
 
 Note
 -----

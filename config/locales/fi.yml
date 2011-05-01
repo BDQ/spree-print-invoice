@@ -4,8 +4,19 @@ fi:
 
   footer_right: "Sähköposti  \nPuhelin  \n Nettikauppa \nY-Tunnus"
   footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi \n 2380478-1"
-  customer_invoice: Lasku
-  thanks: Kiitos tilauksesta.
-  packaging_slip_print: Kuormakirja
-  invoice_print: Tulosta Lasku
-  packaging_slip: Kuormakirja
+  invoice:
+    header: Lasku
+    thanks: Thank you for your order
+    print: Lasku
+  packaging_slip:
+    header: Kuormakirja
+    print: Kuormakirja
+    thanks: Tarkistaka paketti heti.
+  reminder:
+    header: Maksumuistutus
+    print: Maksumuistutus
+    thanks: "Kirjanpitomme mukaan emme ole saaneet suoritustanne tasta
+            laskusta.\n Pyydämme maksamaan laskun heti. \n\n
+            Mikäli lasku on jo maksettu, tämä maksuhuomautus on aiheeton."
+  
+  

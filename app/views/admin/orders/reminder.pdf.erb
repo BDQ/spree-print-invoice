@@ -1,5 +1,5 @@
 <%
-@hide_prices = params[:template] == "packaging_slip"
+@maksumuistutus = params[:template] == "reminder"
 @pdf = Prawn::Document.new(  :page_size   => "A4" ) 
 render :partial => "print"
 %>

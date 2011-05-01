@@ -2,7 +2,7 @@
 @pdf.font "Helvetica", :size => 12
 @pdf.move_down 40 
 
-@pdf.text I18n.t(:thanks)
+@pdf.text I18n.t("#{params[:template]}.thanks" , :order => @order)
 
 @pdf.move_down 20 
 

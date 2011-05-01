@@ -8,11 +8,7 @@ end
 
 @pdf.bounding_box([350, y_position-10] , :width => 190 , :height => 70) do 
   @pdf.fill_color "E99323"
-  if @hide_prices
-    @pdf.text I18n.t(:packaging_slip), :align => :right, :style => :bold, :size => 18
-  else
-    @pdf.text I18n.t(:customer_invoice), :align => :right, :style => :bold, :size => 18
-  end
+  @pdf.text I18n.t("#{params[:template]}.header"), :align => :right, :style => :bold, :size => 18
   @pdf.fill_color "000000"
   @pdf.move_down 2
 
