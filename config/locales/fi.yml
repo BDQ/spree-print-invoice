@@ -6,7 +6,7 @@ fi:
   footer_right2: " tukku@auringostaitaan.fi \n040 146 1222 \n  tukku.auringostaitaan.fi \n 2380478-1"
   invoice:
     header: Lasku
-    thanks: Thank you for your order
+    thanks: Kiitos tilauksestasi.
     print: Lasku
   packaging_slip:
     header: Kuormakirja
