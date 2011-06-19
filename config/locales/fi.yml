@@ -11,11 +11,11 @@ fi:
   packaging_slip:
     header: Kuormakirja
     print: Kuormakirja
-    thanks: Tarkistaka paketti heti.
+    thanks: Tarkistathan tilauksen välittömästi.
   reminder:
     header: Maksumuistutus
     print: Maksumuistutus
-    thanks: "Kirjanpitomme mukaan emme ole saaneet suoritustanne tasta
+    thanks: "Kirjanpitomme mukaan emme ole saaneet suoritustanne tästä
             laskusta.\n Pyydämme maksamaan laskun heti. \n\n
             Mikäli lasku on jo maksettu, tämä maksuhuomautus on aiheeton."
   
